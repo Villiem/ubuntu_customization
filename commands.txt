@@ -1,0 +1,60 @@
+sudo apt update && sudo apt dist-upgrade -y
+
+dconf dump / > GNOME-Default-Settings.dconf
+sudo apt install gnome-tweaks gnome-extensions-app git curls rsync
+mkdir ~/.themes
+
+unzip ~/Downloads/Everforest-GTK-Theme.zip -d ~/.themes
+
+ln -s ~/.themes/Everforest-Dark-BL-MOD/gtk-4.0/assets/ ~/.config/gtk-4.0
+ln -s ~/.themes/Everforest-Dark-BL-MOD/gtk-4.0/gtk.css ~/.config/gtk-4.0
+ln -s ~/.themes/Everforest-Dark-BL-MOD/gtk-4.0/gtk-dark.css ~/.config/gtk-4.0
+
+sudo apt install flatpak
+
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+flatpak install	flathub com.github.tchx84.Flatseal
+
+xdg-config/gtk-4.0
+~/.themes
+~/.local/share/icons
+
+mkdir ~/.local/share/icons
+unzip ~/Downloads/Papirus-everforest-icons.zip -d ~/.local/share/icons
+unzip ~/Downloads/Sevi-green-everforest-icons.zip -d ~/.local/share/icons
+ls -al ~/.local/share/icons
+
+mkdir ~/.icons
+unzip ~/Downloads/Sukito-R-Everforest.zip -d ~/.icons
+unzip ~/Downloads/Sukito-S-Everforest.zip -d ~/.icons
+
+ls -al ~/.icons
+
+unzip ~/Downloads/font-packs.zip -d ~/Downloads/
+rsync -av ~/Downloads/font-packs/.local $HOME
+
+ls -al ~/.local/share/fonts
+
+unzip ~/Downloads/wallpapers.zip -d ~/Downloads/
+sudo rsync -av /home/emiliano/Downloads/wallpapers/ /
+sudo ls -al /usr/share/backgrounds/everforest/
+
+unzip ~/Downloads/gnome-extensions.zip -d ~/Downloads/
+rsync -av /home/emiliano/Downloads/gnome-extensions/.local ~
+
+ls -al ~/.local/share/gnome-shell/extensions
+
+unzip ~/Downloads/gnome-config.zip -d ~/Downloads/
+cd ~/Downloads/gnome-config
+
+dconf load /org/gnome/desktop/ < org.gnome.desktop.dconf
+dconf load /org/gnome/shell/ < org.gnome.shell.dconf
+
+sudo apt install conky-all jq curl -y
+
+unzip ~/Downloads/conky-config.zip -d ~/Downloads/
+rsync -av /home/emiliano/Downloads/conky-config/.config ~
+ls -al ~/.config/conky
+ls -al ~/.config/autostart
+
+gedit ~/.config/conky/Regulus-MOD/config/Regulus.conf 
